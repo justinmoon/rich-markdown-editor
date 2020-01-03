@@ -7,7 +7,7 @@ export default function CollapsableHeadings() {
     getPathForHeadingNode(editor: Editor, node: Node) {
       const slugish = headingToSlug(editor.value.document, node);
       return `${editor.props.id || window.location.pathname}#${slugish}`;
-    },
+    }
   };
 
   const commands = {
@@ -24,10 +24,10 @@ export default function CollapsableHeadings() {
       const persistKey = editor.getPathForHeadingNode(node);
 
       if (collapsed) {
-        localStorage.removeItem(persistKey);
+        //localStorage.removeItem(persistKey);
         return editor.showContentBelow(node);
       } else {
-        localStorage.setItem(persistKey, "collapsed");
+        //localStorage.setItem(persistKey, "collapsed");
         return editor.hideContentBelow(node);
       }
     },
@@ -55,7 +55,7 @@ export default function CollapsableHeadings() {
         }
         if (n === node) active = true;
       });
-    },
+    }
   };
 
   function onKeyDown(
@@ -84,8 +84,9 @@ export default function CollapsableHeadings() {
     if (node.type.match(/heading/)) {
       const collapsed = node.data.get("collapsed");
       const persistKey = editor.getPathForHeadingNode(node);
-      const persistedState = localStorage.getItem(persistKey);
-      const shouldBeCollapsed = persistedState === "collapsed";
+      //const persistedState = localStorage.getItem(persistKey);
+      //const shouldBeCollapsed = persistedState === "collapsed";
+      const shouldBeCollapsed = false;
 
       // ensures that on load content under collapsed headings is correctly hidden
       if (shouldBeCollapsed && !collapsed) {
@@ -93,7 +94,7 @@ export default function CollapsableHeadings() {
           return editor
             .updateContentBelow(node, shouldBeCollapsed)
             .setNodeByKey(node.key, {
-              data: { collapsed: shouldBeCollapsed },
+              data: { collapsed: shouldBeCollapsed }
             });
         };
       }
