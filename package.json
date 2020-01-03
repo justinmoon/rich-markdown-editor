@@ -9,6 +9,7 @@
     "lint": "yarn eslint src",
     "start": "webpack-serve --config example/webpack.config.js --content example/dist",
     "build": "babel src/ -d lib/",
+    "prepare": "npm run build",
     "prepublish": "yarn build"
   },
   "dependencies": {
